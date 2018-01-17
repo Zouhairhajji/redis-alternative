@@ -1,22 +1,21 @@
 package fr.esipe.control;
 
 import fr.esipe.control.configs.ProducerMessage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.jms.JMSException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationListener;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-public class Application implements ApplicationListener<ApplicationReadyEvent>{
+@EnableSwagger2
+public class Application extends SpringBootServletInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
     private ProducerMessage producerMessage;
-    
-    
     
     
     public static void main(String[] args) {
@@ -25,10 +24,15 @@ public class Application implements ApplicationListener<ApplicationReadyEvent>{
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent e) {
-        try {
-            producerMessage.send("coucou");
-        } catch (JMSException ex) {
-            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(SpringApplication.class);
+    }
+
+    
+    
+    
 }

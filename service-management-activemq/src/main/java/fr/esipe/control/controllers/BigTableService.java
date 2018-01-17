@@ -6,7 +6,7 @@
 package fr.esipe.control.controllers;
 
 import fr.esipe.control.beans.TableContent;
-import fr.esipe.control.configs.BigTable;
+import fr.esipe.control.components.BigTable;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Map;

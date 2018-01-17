@@ -5,6 +5,7 @@
  */
 package fr.esipe.control.configs;
 
+import fr.esipe.control.components.ConsumerMessageListener;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
